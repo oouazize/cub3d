@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 16:13:00 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/12 10:48:23 by mmounib          ###   ########.fr       */
+/*   Created: 2022/06/17 16:21:41 by oouazize          #+#    #+#             */
+/*   Updated: 2022/06/20 15:07:27 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-void	ft_free(char **frfr)
+void ft_free(char **frfr)
 {
 	free(*frfr);
 	*frfr = NULL;
 }
 
-void	ft_line(char **line, char **save, char **tmp)
+void ft_line(char **line, char **save, char **tmp)
 {
 	if (ft_strchr(*save, '\n') == -1)
 	{
@@ -34,13 +34,13 @@ void	ft_line(char **line, char **save, char **tmp)
 	}
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
-	static char	*save;
-	char		*line;
-	char		*buff;
-	char		*tmp;
-	int			ret;
+	static char *save;
+	char *line;
+	char *buff;
+	char *tmp;
+	int ret;
 
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
@@ -52,7 +52,7 @@ char	*get_next_line(int fd)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
 		if (ret == -1)
-			break ;
+			break;
 		buff[ret] = 0;
 		save = ft_strjoin(save, buff);
 	}

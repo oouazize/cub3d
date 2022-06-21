@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/mmounib/Desktop/cub3d'
-gcc -Werror -Wextra -Wall -fsanitize=address -g cub3d.c ft_strjoin.c ft_substr.c ft_strlen.c ft_strdup.c ft_strstr.c get_next_line.c ft_split.c ft_strchr.c ft_strncmp.c ft_strlcpy.c ft_strcmp.c ft_strtrim.c ft_atoi.c ft_isascii.c ft_isalpha.c check_comma.c check_map.c  -lmlx -framework OpenGL -framework AppKit -o cub3d
-make: Leaving directory `/Users/mmounib/Desktop/cub3d'
- 

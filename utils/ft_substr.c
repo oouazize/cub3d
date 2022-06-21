@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:09:34 by mmounib           #+#    #+#             */
-/*   Updated: 2022/06/11 10:27:25 by mmounib          ###   ########.fr       */
+/*   Created: 2022/06/17 16:21:25 by oouazize          #+#    #+#             */
+/*   Updated: 2022/06/20 15:07:19 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	unsigned int	j;
-	size_t			length;
-	char			*sbstr;
-	char			*str;
+	unsigned int i;
+	unsigned int j;
+	size_t length;
+	char *sbstr;
+	char *str;
 
 	i = start;
 	j = 0;

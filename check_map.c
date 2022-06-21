@@ -19,7 +19,7 @@ void checkmap1(t_info *infos, int *i)
 	infos->map = ft_getmap(infos);
 	while (infos->map[*i])
 	{
-		infos->map[*i] = ft_strtrim(infos->map[*i], " ");
+		// infos->map[*i] = ft_strtrim(infos->map[*i], " ");
 		j = 3;
 		ft_skipspace(infos, &j, *i);
 		if (!ft_strncmp(infos->map[*i], "NO ", 3))

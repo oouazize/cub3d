@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 09:25:34 by mmounib           #+#    #+#             */
-/*   Updated: 2022/06/15 18:34:24 by mmounib          ###   ########.fr       */
+/*   Created: 2022/06/17 16:19:42 by oouazize          #+#    #+#             */
+/*   Updated: 2022/06/20 15:06:54 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+
+#include "../cub3d.h"
 
 int	ft_atoi(const char *str)
 {
@@ -36,3 +37,63 @@ int	ft_atoi(const char *str)
 		value = (value * 10) + str[i++] - '0';
 	return (s * value);
 }
+
+int ft_isalpha(char *ch)
+{
+	int i;
+
+	i = 0;
+	while (ch[i])
+	{
+		if ((ch[i] >= 'a' && ch[i] <= 'z') || (ch[i] >= 'A' && ch[i] <= 'Z'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int ft_isascii(char *a)
+{
+	int i;
+
+	i = 0;
+	while (a[i])
+	{
+		if (a[i] == '-' || a[i] == '+')
+			i++;
+		if (!(a[i] >= 48 && a[i] <= 57))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int ft_strchr(const char *str, int c)
+{
+	int i = 0;
+
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	if (c == '\0')
+		return (i);
+	return (-1);
+}
+
+int	ft_strcmp(const char *str1, const char *str2)
+{
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
+
+	i = 0;
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+

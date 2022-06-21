@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 16:12:40 by mmounib           #+#    #+#             */
-/*   Updated: 2022/06/11 10:27:42 by mmounib          ###   ########.fr       */
+/*   Created: 2022/06/17 16:20:53 by oouazize          #+#    #+#             */
+/*   Updated: 2022/06/20 15:07:06 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		j;
-	int		len;
-	int		len1;
-	char	*string;
+	int i;
+	int j;
+	int len;
+	int len1;
+	char *string;
 
 	i = 0;
 	j = 0;
