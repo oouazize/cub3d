@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 12:21:59 by oouazize          #+#    #+#             */
-/*   Updated: 2022/01/31 14:03:24 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:03:32 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int checkmap(t_info *infos)
 			// }
 			// if (infos->map1[i][j] == '0' && (infos->map1[i][j - 1] == ' ' || infos->map1[i][j + 1] == ' '))
 			// {
-				
+
 			// 	printf("error!!\n");
 			// 	return (0);
 			// }

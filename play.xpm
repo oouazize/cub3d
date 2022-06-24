@@ -3,9 +3,9 @@ static char *ed6a5c66425343079eadcbf515266bb28fY8xF0dS9BYCAYL[] = {
 /* columns rows colors chars-per-pixel */
 "36 36 7 1 ",
 "  c None",
-". c #FC2406",
+". c #FC3206",
 "X c #FD2506",
-"o c #FC2407",
+"o c #FC3207",
 "O c #FC2507",
 "+ c #FD2507",
 "@ c #FC2508",

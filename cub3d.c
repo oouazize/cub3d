@@ -6,53 +6,61 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:06 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/21 16:34:37 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/23 19:15:28 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-int	check_line1(t_info *info)
+int check_line1(t_info *info)
 {
 	int i;
 
 	i = -1;
-	while(info->map1[0][++i])
+	while (info->map1[0][++i])
 		if (info->map1[0][i] != '1')
 			return (0);
 	return (1);
 }
 
-void dda(double pa_i, double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
+void dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 {
 	int y = 0;
+	int color;
 	// x = 0;
-    int dx = X1 - X0;
-    int dy = Y1 - Y0;
+	int dx = X1 - X0;
+	int dy = Y1 - Y0;
 	int steps;
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else
 		steps = abs(dy);
-    float Xinc = dx / (float) steps;
-    float Yinc = dy / (float) steps;
- 
-    float X = X0;
-    float Y = Y0;
-    for (int i = 0; i <= steps; i++)
-    {
+	float Xinc = dx / (float)steps;
+	float Yinc = dy / (float)steps;
+
+	float X = X0;
+	float Y = Y0;
+	for (int i = 0; i <= steps; i++)
+	{
 		if (infos->map1[(int)round(Y) / 32][(int)round(X) / 32] == '1')
 		{
+			if (infos->map1[(int)round(Y) / 32][(int)(round(X - Xinc) / 32)] != '1')
+			{
+				if (Xinc > 0)
+					color = 0x000000;
+				else
+					color = 0x0000FF;
+			}
+			else if (infos->map1[(int)round(Y - Yinc) / 32][(int)(round(X) / 32)] != '1')
+			{
+				if (Yinc > 0)
+					color = 0x00FF00;
+				else
+					color = 0xFF0000;
+			}
 			double X1 = (infos->x) - ((int)round(X));
 			double Y1 = (infos->y) - ((int)round(Y));
 			infos->distance_plane = (WIN_WIDTH / 2) / tan(33 * PI / 180);
-			// printf("%2.f\n", pa);
-			if (pa_i == pa*25*33)
-			{
-				infos->distance = sqrt(pow(X1, 2) + pow(Y1, 2));
-				printf("distance: %2.f\n", infos->distance);
-			}
 			infos->distance_wall = cos((pa - infos->angle) * PI / 180) * sqrt(pow(X1, 2) + pow(Y1, 2));
 			infos->wall_h = 32 / (cos((pa - infos->angle) * PI / 180) * sqrt(pow(X1, 2) + pow(Y1, 2))) * fabs(infos->distance_plane);
 			infos->floor1 = (WIN_HEIGHT / 2) - (infos->wall_h / 2);
@@ -66,7 +74,7 @@ void dda(double pa_i, double pa, int x, int X0, int Y0, int X1, int Y1, t_info *
 				infos->wall_h = WIN_HEIGHT;
 			while (y < infos->wall_h)
 			{
-				my_mlx_pixel_put(infos, x, y, 0x393636);
+				my_mlx_pixel_put(infos, x, y, color);
 				y++;
 			}
 			while (y < WIN_HEIGHT)
@@ -74,12 +82,12 @@ void dda(double pa_i, double pa, int x, int X0, int Y0, int X1, int Y1, t_info *
 				my_mlx_pixel_put(infos, x, y, 0xE6ECF3);
 				y++;
 			}
-			break ;
+			break;
 		}
 		// my_mlx_pixel_put(infos, round(X), round(Y), 0xFFFF00);
-        X += Xinc;
-        Y += Yinc;
-    }
+		X += Xinc;
+		Y += Yinc;
+	}
 }
 
 char **ft_getmap(t_info *infos)
@@ -90,7 +98,7 @@ char **ft_getmap(t_info *infos)
 
 	temp = ft_strdup("");
 	line = get_next_line(infos->fd);
-	while(line)
+	while (line)
 	{
 		temp = ft_strjoin(temp, line);
 		free(line);
@@ -103,17 +111,17 @@ char **ft_getmap(t_info *infos)
 
 void ft_skipspace(t_info *infos, int *j, int i)
 {
-	while(infos->map[i][*j] == 32)
+	while (infos->map[i][*j] == 32)
 		(*j)++;
 }
 
-void	draw_rays(t_info *infos)
+void draw_rays(t_info *infos)
 {
 	double pa = infos->angle - 33;
 	int x = -1;
 	while (pa < infos->angle + 33 && ++x < WIN_WIDTH)
 	{
-		dda(infos->angle, pa, x, infos->x, infos->y, (infos->x + (100000 * cos(pa * PI / 180))), (infos->y + (100000 * sin(pa * PI / 180))), infos);
+		dda(pa, x, infos->x, infos->y, (infos->x + (100000 * cos(pa * PI / 180))), (infos->y + (100000 * sin(pa * PI / 180))), infos);
 		pa += 0.04;
 	}
 	mlx_put_image_to_window(infos->mlx, infos->win, infos->img, 0, 0);
@@ -195,7 +203,7 @@ int main(int argc, char **argv)
 	checkmap1(&info, &i);
 	replace_map(&info, i);
 	if (!checkmap(&info))
-		return(0);
+		return (0);
 	if (!info.south && !info.east && !info.west && !info.north && !info.ceiling && !info.floor)
 		printf("Wrong element!!\n");
 	draw_map(&info);

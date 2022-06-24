@@ -6,24 +6,22 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:19:42 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/20 15:06:54 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:57:59 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../cub3d.h"
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int					i;
-	unsigned long long	value;
-	int					s;
+	int i;
+	unsigned long long value;
+	int s;
 
 	i = 0;
 	value = 0;
 	s = 1;
-	while ((str[i] && str[i] >= 9 && str[i] <= 13)
-		|| str[i] == 32)
+	while ((str[i] && str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	while (str[i] && (str[i] == '-' || str[i] == '+'))
 	{
@@ -83,11 +81,11 @@ int ft_strchr(const char *str, int c)
 	return (-1);
 }
 
-int	ft_strcmp(const char *str1, const char *str2)
+int ft_strcmp(const char *str1, const char *str2)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t i;
+	unsigned char *s1;
+	unsigned char *s2;
 
 	i = 0;
 	s1 = (unsigned char *)str1;
@@ -96,4 +94,3 @@ int	ft_strcmp(const char *str1, const char *str2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-
