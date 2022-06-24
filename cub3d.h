@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:13 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 10:48:00 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:06:01 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ void event_left(t_info **infos, int keysym);
 void event_up(t_info **infos);
 void event_down(t_info **infos);
 void draw_rays(t_info *infos);
+void	black_window(t_info **infos);
 
 #endif

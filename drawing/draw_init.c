@@ -6,15 +6,15 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:23 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 10:49:18 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:11:00 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void my_mlx_pixel_put(t_info *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_info *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	if (y > WIN_HEIGHT)
 		y = WIN_HEIGHT;
@@ -26,8 +26,8 @@ void my_mlx_pixel_put(t_info *data, int x, int y, int color)
 
 void draw_map1(t_info *infos, int x, int y, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 32)
@@ -42,10 +42,10 @@ void draw_map1(t_info *infos, int x, int y, int color)
 	}
 }
 
-void draw_map(t_info *infos)
+void	draw_map(t_info *infos)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -63,7 +63,7 @@ void draw_map(t_info *infos)
 	mlx_put_image_to_window(infos->mlx, infos->win, infos->img, 0, 0);
 }
 
-void draw_player(t_info *infos)
+void	draw_player(t_info *infos)
 {
 	int i;
 	int j;
@@ -90,7 +90,7 @@ void draw_player(t_info *infos)
 	}
 }
 
-void init(t_info *infos)
+void	init(t_info *infos)
 {
 	infos->north = 0;
 	infos->east = 0;
@@ -103,9 +103,14 @@ void init(t_info *infos)
 	infos->mlx = mlx_init();
 	infos->win = mlx_new_window(infos->mlx, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
 	infos->img = mlx_new_image(infos->mlx, WIN_WIDTH, WIN_HEIGHT);
-	infos->no_text = mlx_xpm_file_to_image(infos->mlx, infos->no_text, &(infos->width), &(infos->height));
-	infos->so_text = mlx_xpm_file_to_image(infos->mlx, infos->so_text, &(infos->width), &(infos->height));
-	infos->we_text = mlx_xpm_file_to_image(infos->mlx, infos->we_text, &(infos->width), &(infos->height));
-	infos->ea_text = mlx_xpm_file_to_image(infos->mlx, infos->ea_text, &(infos->width), &(infos->height));
-	infos->addr = mlx_get_data_addr(infos->img, &infos->bpp, &infos->size_l, &infos->endian);
+	infos->no_text = mlx_xpm_file_to_image(infos->mlx, infos->no_text,
+											&(infos->width), &(infos->height));
+	infos->so_text = mlx_xpm_file_to_image(infos->mlx, infos->so_text,
+											&(infos->width), &(infos->height));
+	infos->we_text = mlx_xpm_file_to_image(infos->mlx, infos->we_text,
+											&(infos->width), &(infos->height));
+	infos->ea_text = mlx_xpm_file_to_image(infos->mlx, infos->ea_text,
+											&(infos->width), &(infos->height));
+	infos->addr = mlx_get_data_addr(infos->img, &infos->bpp,
+									&infos->size_l, &infos->endian);
 }

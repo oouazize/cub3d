@@ -6,27 +6,23 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:53 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/20 15:07:06 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:09:58 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int i;
-	int j;
-	int len;
-	int len1;
-	char *string;
+	int		i;
+	int		j;
+	char	*string;
 
 	i = 0;
 	j = 0;
 	if (!s1)
 		return (0);
-	len = ft_strlen(s1);
-	len1 = ft_strlen(s2);
-	string = (char *)malloc((len + len1 + 1) * sizeof(char));
+	string = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (string == NULL)
 		return (0);
 	while (s1[i])
@@ -38,4 +34,18 @@ char *ft_strjoin(char const *s1, char const *s2)
 		string[i++] = s2[j++];
 	string[i] = '\0';
 	return (string);
+}
+
+void	black_window(t_info **infos)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < WIN_HEIGHT)
+	{
+		j = -1;
+		while (++j < WIN_WIDTH)
+			my_mlx_pixel_put(*infos, j, i, 0x000000);
+	}
 }

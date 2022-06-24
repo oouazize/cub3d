@@ -6,17 +6,34 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:36 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 10:49:00 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:06:43 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void event_right(t_info **infos, int keysym)
+void	rotate_angle(t_info **infos, int side)
 {
-	int i;
-	int j;
-	i = -1;
+	if (side > 0)
+	{
+		(*infos)->angle += 5;
+		if ((*infos)->angle < 0)
+			(*infos)->angle += 360;
+		(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
+		(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
+	}
+	else
+	{
+		(*infos)->angle -= 5;
+		if ((*infos)->angle > 360)
+			(*infos)->angle -= 360;
+		(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
+		(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
+	}
+}
+
+void	event_right(t_info **infos, int keysym)
+{
 	(*infos)->flag1 = 0;
 	if (keysym == 2)
 	{
@@ -37,31 +54,16 @@ void event_right(t_info **infos, int keysym)
 		}
 	}
 	else
-	{
-		(*infos)->angle += 5;
-		if ((*infos)->angle < 0)
-			(*infos)->angle += 360;
-		(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
-		(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
-	}
-	while (++i < WIN_HEIGHT)
-	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			my_mlx_pixel_put(*infos, j, i, 0x000000);
-	}
+		rotate_angle(infos, 5);
+	black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
 	draw_map(*infos);
 	draw_rays(*infos);
 }
 
-void event_left(t_info **infos, int keysym)
+void	event_left(t_info **infos, int keysym)
 {
-	int i;
-	int j;
-
 	(*infos)->flag = 0;
-	i = -1;
 	if (keysym == 0)
 	{
 		if ((*infos)->flag1)
@@ -81,30 +83,15 @@ void event_left(t_info **infos, int keysym)
 		}
 	}
 	else
-	{
-		(*infos)->angle -= 5;
-		if ((*infos)->angle > 360)
-			(*infos)->angle -= 360;
-		(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
-		(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
-	}
-	while (++i < WIN_HEIGHT)
-	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			my_mlx_pixel_put(*infos, j, i, 0x000000);
-	}
+		rotate_angle(infos, -5);
+	black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
 	draw_map(*infos);
 	draw_rays(*infos);
 }
 
-void event_up(t_info **infos)
+void	event_up(t_info **infos)
 {
-	int i;
-	int j;
-
-	i = -1;
 	(*infos)->flag = 0;
 	(*infos)->flag1 = 0;
 	(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
@@ -118,22 +105,14 @@ void event_up(t_info **infos)
 		return ;
 	}
 	mlx_put_image_to_window((*infos)->mlx, (*infos)->win, (*infos)->play, (*infos)->x, (*infos)->y);
-	while (++i < WIN_HEIGHT)
-	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			my_mlx_pixel_put(*infos, j, i, 0x000000);
-	}
+	black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
 	draw_map(*infos);
 	draw_rays(*infos);
 }
 
-void event_down(t_info **infos)
+void	event_down(t_info **infos)
 {
-	int i;
-	int j;
-
 	(*infos)->flag = 0;
 	(*infos)->flag1 = 0;
 	(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
@@ -146,14 +125,8 @@ void event_down(t_info **infos)
 		(*infos)->x += (*infos)->delta_x;
 		return ;
 	}
-	i = -1;
 	mlx_put_image_to_window((*infos)->mlx, (*infos)->win, (*infos)->play, (*infos)->x, (*infos)->y);
-	while (++i < WIN_HEIGHT)
-	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			my_mlx_pixel_put(*infos, j, i, 0x000000);
-	}
+	black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
 	draw_map(*infos);
 	draw_rays(*infos);

@@ -6,13 +6,13 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:06 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/23 19:15:28 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:08:54 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_line1(t_info *info)
+int	check_line1(t_info *info)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int check_line1(t_info *info)
 	return (1);
 }
 
-void dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
+void	dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 {
 	int y = 0;
 	int color;
@@ -90,11 +90,11 @@ void dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 	}
 }
 
-char **ft_getmap(t_info *infos)
+char	 **ft_getmap(t_info *infos)
 {
-	char *line;
-	char *temp;
-	char **map;
+	char	*line;
+	char	*temp;
+	char	**map;
 
 	temp = ft_strdup("");
 	line = get_next_line(infos->fd);
@@ -109,26 +109,31 @@ char **ft_getmap(t_info *infos)
 	return (map);
 }
 
-void ft_skipspace(t_info *infos, int *j, int i)
+void	ft_skipspace(t_info *infos, int *j, int i)
 {
 	while (infos->map[i][*j] == 32)
 		(*j)++;
 }
 
-void draw_rays(t_info *infos)
+void	draw_rays(t_info *infos)
 {
-	double pa = infos->angle - 33;
-	int x = -1;
+	double	pa;
+	int		x;
+
+	x = -1;
+	pa = infos->angle - 33;
+
 	while (pa < infos->angle + 33 && ++x < WIN_WIDTH)
 	{
-		dda(pa, x, infos->x, infos->y, (infos->x + (100000 * cos(pa * PI / 180))), (infos->y + (100000 * sin(pa * PI / 180))), infos);
+		dda(pa, x, infos->x, infos->y, (infos->x + (100000 * cos(pa * PI / 180))),
+			(infos->y + (100000 * sin(pa * PI / 180))), infos);
 		pa += 0.04;
 	}
 	mlx_put_image_to_window(infos->mlx, infos->win, infos->img, 0, 0);
 	// mlx_put_image_to_window(infos->mlx, infos->win, infos->play, infos->x - 17, infos->y - 17);
 }
 
-void replace_map(t_info *infos, int i)
+void	replace_map(t_info *infos, int i)
 {
 	int x;
 	int c;
@@ -150,7 +155,7 @@ void replace_map(t_info *infos, int i)
 	infos->map1[c] = NULL;
 }
 
-int handle_input(int keysym, t_info *infos)
+int	handle_input(int keysym, t_info *infos)
 {
 	if (keysym == 53)
 	{
@@ -168,23 +173,23 @@ int handle_input(int keysym, t_info *infos)
 	return (0);
 }
 
-int closed(void)
+int	closed(void)
 {
 	printf("Game Over\n");
 	exit(0);
 }
 
-void intt(t_info *infos)
+void	intt(t_info *infos)
 {
 	mlx_hook(infos->win, 17, 1L << 17, &closed, infos);
 	mlx_hook(infos->win, 2, 1L << 0, &handle_input, infos);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_info info;
-	int i;
-	int rgb;
+	t_info	info;
+	int		i;
+	int		rgb;
 
 	if (argc > 2)
 		return (0);
