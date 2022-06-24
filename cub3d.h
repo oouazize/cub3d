@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:13 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/22 13:57:59 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 10:48:00 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct t_info
 	int i;
 	int j;
 	int fd;
+	int	flag;
+	int	flag1;
 	int maplen;
 	double distance_plane;
 	double distance;

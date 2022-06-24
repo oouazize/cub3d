@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:36 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/23 18:49:29 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 10:49:00 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@ void event_right(t_info **infos, int keysym)
 	int i;
 	int j;
 	i = -1;
+	(*infos)->flag1 = 0;
 	if (keysym == 2)
 	{
+		if ((*infos)->flag)
+			return ;
 		(*infos)->angle += 90;
 		if ((*infos)->angle < 0)
 			(*infos)->angle += 360;
 		(*infos)->y += sin((*infos)->angle * PI / 180) * 10;
 		(*infos)->x += cos((*infos)->angle * PI / 180) * 10;
+		(*infos)->angle -= 90;
 		if ((*infos)->map1[(*infos)->y / 32][(*infos)->x / 32] == '1')
 		{
-			(*infos)->y -= sin((*infos)->angle * PI / 180) * 10;
-			(*infos)->x -= cos((*infos)->angle * PI / 180) * 10;
-			(*infos)->angle -= 90;
+			(*infos)->y -= sin(((*infos)->angle + 90) * PI / 180) * 10;
+			(*infos)->x -= cos(((*infos)->angle + 90) * PI / 180) * 10;
+			(*infos)->flag = 1;
 			return ;
 		}
-		(*infos)->angle -= 90;
 	}
 	else
 	{
@@ -57,22 +60,25 @@ void event_left(t_info **infos, int keysym)
 	int i;
 	int j;
 
+	(*infos)->flag = 0;
 	i = -1;
 	if (keysym == 0)
 	{
+		if ((*infos)->flag1)
+			return ;
 		(*infos)->angle -= 90;
 		if ((*infos)->angle > 360)
 			(*infos)->angle -= 360;
 		(*infos)->y += sin((*infos)->angle * PI / 180) * 10;
 		(*infos)->x += cos((*infos)->angle * PI / 180) * 10;
+		(*infos)->angle += 90;
 		if ((*infos)->map1[(*infos)->y / 32][(*infos)->x / 32] == '1')
 		{
-			(*infos)->y -= sin((*infos)->angle * PI / 180) * 10;
-			(*infos)->x -= cos((*infos)->angle * PI / 180) * 10;
-			(*infos)->angle += 90;
+			(*infos)->y -= sin(((*infos)->angle - 90) * PI / 180) * 10;
+			(*infos)->x -= cos(((*infos)->angle - 90) * PI / 180) * 10;
+			(*infos)->flag1 = 1;
 			return ;
 		}
-		(*infos)->angle += 90;
 	}
 	else
 	{
@@ -99,6 +105,8 @@ void event_up(t_info **infos)
 	int j;
 
 	i = -1;
+	(*infos)->flag = 0;
+	(*infos)->flag1 = 0;
 	(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
 	(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
 	(*infos)->y += (*infos)->delta_y;
@@ -126,6 +134,8 @@ void event_down(t_info **infos)
 	int i;
 	int j;
 
+	(*infos)->flag = 0;
+	(*infos)->flag1 = 0;
 	(*infos)->delta_x = cos((*infos)->angle * PI / 180) * 10;
 	(*infos)->delta_y = sin((*infos)->angle * PI / 180) * 10;
 	(*infos)->y -= (*infos)->delta_y;

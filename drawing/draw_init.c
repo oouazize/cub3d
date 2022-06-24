@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:56:23 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/23 19:11:01 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/24 10:49:18 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void init(t_info *infos)
 	infos->south = 0;
 	infos->ceiling = 0;
 	infos->floor = 0;
+	infos->flag = 0;
+	infos->flag1 = 0;
 	infos->mlx = mlx_init();
 	infos->win = mlx_new_window(infos->mlx, WIN_WIDTH, WIN_HEIGHT, "CUB3D");
 	infos->img = mlx_new_image(infos->mlx, WIN_WIDTH, WIN_HEIGHT);
