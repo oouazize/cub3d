@@ -16,47 +16,47 @@ void checkmap1(t_info *infos, int *i)
 {
 	int j;
 
-	infos->map = ft_getmap(infos);
-	while (infos->map[*i])
+
+	infos->map->map = ft_getmap(infos);
+	while (infos->map->map[*i])
 	{
-		// infos->map[*i] = ft_strtrim(infos->map[*i], " ");
 		j = 3;
 		ft_skipspace(infos, &j, *i);
-		if (!ft_strncmp(infos->map[*i], "NO ", 3))
+		if (!ft_strncmp(infos->map->map[*i], "NO ", 3))
 		{
-			infos->no_text = ft_strdup(&infos->map[*i][j]);
-			infos->north = 1;
+			infos->map->no_text = ft_strdup(&infos->map->map[*i][j]);
+			infos->map->north = 1;
 		}
-		if (!ft_strncmp(infos->map[*i], "SO ", 3))
+		if (!ft_strncmp(infos->map->map[*i], "SO ", 3))
 		{
-			infos->so_text = ft_strdup(&infos->map[*i][j]);
-			infos->south = 1;
+			infos->map->so_text = ft_strdup(&infos->map->map[*i][j]);
+			infos->map->south = 1;
 		}
-		if (!ft_strncmp(infos->map[*i], "EA ", 3))
+		if (!ft_strncmp(infos->map->map[*i], "EA ", 3))
 		{
-			infos->ea_text = ft_strdup(&infos->map[*i][j]);
-			infos->east = 1;
+			infos->map->ea_text = ft_strdup(&infos->map->map[*i][j]);
+			infos->map->east = 1;
 		}
-		if (!ft_strncmp(infos->map[*i], "WE ", 3))
+		if (!ft_strncmp(infos->map->map[*i], "WE ", 3))
 		{
-			infos->we_text = ft_strdup(&infos->map[*i][j]);
-			infos->west = 1;
+			infos->map->we_text = ft_strdup(&infos->map->map[*i][j]);
+			infos->map->west = 1;
 		}
-		if (!ft_strncmp(infos->map[*i], "F ", 2))
+		if (!ft_strncmp(infos->map->map[*i], "F ", 2))
 		{
 			j = 2;
 			ft_skipspace(infos, &j, *i);
 			if (!check_comma(infos, j, *i))
 				printf("Invalid color!!\n");
-			infos->ceiling = 1;
+			infos->map->ceiling = 1;
 		}
-		if (!ft_strncmp(infos->map[*i], "C ", 2))
+		if (!ft_strncmp(infos->map->map[*i], "C ", 2))
 		{
 			j = 2;
 			ft_skipspace(infos, &j, *i);
-			if (!check_comma(infos, j, *i))
+			if (!check_comma1(infos, j, *i))
 				printf("Invalid color11!!\n");
-			infos->floor = 1;
+			infos->map->floor = 1;
 			break;
 		}
 		(*i)++;
@@ -69,29 +69,11 @@ int checkmap(t_info *infos)
 	int j;
 
 	i = 0;
-	while (infos->map1[i])
+	while (infos->map->map1[i])
 	{
 		j = 0;
-		while (infos->map1[i][j])
-		{
-			// if (infos->map1[i][j] == '0' && (infos->map1[i - 1][j] == ' '|| infos->map1[i + 1][j] == '\0'))
-			// {
-			// 	printf("error11!!\n");
-			// 	return (0);
-			// }
-			// if (infos->map1[i][j] == '0' && (infos->map1[i][j - 1] == ' ' || infos->map1[i][j + 1] == ' '))
-			// {
-
-			// 	printf("error!!\n");
-			// 	return (0);
-			// }
-			// if (infos->map1[i][j] == 'N' && (infos->map1[i - 1][j] == ' '|| infos->map1[i + 1][j] == '\0'))
-			// {
-			// 	printf("error22!!\n");
-			// 	return (0);
-			// }
+		while (infos->map->map1[i][j])
 			j++;
-		}
 		i++;
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:13 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/25 10:47:11 by mmounib          ###   ########.fr       */
+/*   Updated: 2022/06/25 20:00:43 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,13 @@
 #define WALL_SIZE 500
 #define PI 3.141592653589793238
 
-typedef struct t_info
+typedef struct t_map
 {
-	void *mlx;
-	void *win;
-	void *img;
-	int width;
-	int height;
-	char *addr;
-
-	int bpp;
-	int size_l;
-	int endian;
-	int bpp1;
-	int size_l1;
-	int endian1;
 	char **map;
 	char **map1;
 	int north;
 	int west;
 	int east;
-	int distance_wall;
 	int south;
 	char *no_text;
 	char *so_text;
@@ -57,25 +43,58 @@ typedef struct t_info
 	int red;
 	int green;
 	int blue;
-	void *play;
-	void *direction;
+	int red1;
+	int green1;
+	int blue1;
+	int rgb;
+	int rgb1;
+	int fd;
+	int maplen;
+} 			t_map;
+
+typedef struct t_mathi
+{
+	double distance_plane;
+	int distance_wall;
 	int delta_x;
 	int delta_y;
-	double angle;
+	double angle;	
+	double wall_h;
+	double floor1;
+	double ceilling1;
+	int		pos_x;
+	int		pos_y;
+	int		point_x;
+	int		point_y;
+}			t_mathi;
+
+typedef struct t_info
+{
+	void *mlx;
+	void *win;
+	void *img;
+	int width;
+	int height;
+	char *addr;
+	void *play;
+	int bpp;
+	int size_l;
+	int endian;
+	char *addr1;
+	int bpp1;
+	int size_l1;
+	int endian1;
+	char *addr2;
+	char *addr3;
+	char *addr4;
 	int x;
 	int y;
 	int i;
 	int j;
-	int fd;
 	int	flag;
 	int	flag1;
-	int maplen;
-	double distance_plane;
-	double distance;
-	double wall_h;
-	double floor1;
-	double ceilling1;
-	char *addr1;
+	t_mathi *mathi;
+	t_map *map;
 } t_info;
 
 char *ft_strjoin(char const *s1, char const *s2);
@@ -112,5 +131,6 @@ void event_down(t_info **infos);
 void draw_rays(t_info *infos);
 void	black_window(t_info **infos);
 void init2(t_info *infos);
+int check_comma1(t_info *infos, int j, int i);
 
 #endif

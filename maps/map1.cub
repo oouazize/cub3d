@@ -1,10 +1,10 @@
-NO ./textures/texture.xpm
-SO ./textures/wall2.xpm
-WE ./textures/wall1.xpm
-EA ./textures/wall2.xpm
+NO ./textures/t_1.xpm
+SO ./textures/t_2.xpm
+WE ./textures/t_3.xpm
+EA ./textures/t_4.xpm
 
-F 165,165,160
-C 320,328,255
+F 51,51,51
+C 165,165,165
 
 11111111111111111111111111111111111111111111
 10000000111111110000000000011110000000000001
