@@ -6,7 +6,7 @@
 /*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:06 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/25 11:13:18 by mmounib          ###   ########.fr       */
+/*   Updated: 2022/06/25 14:56:54 by mmounib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	check_line1(t_info *info)
 	return (1);
 }
 
-int	get_addr(t_info *data, int x, int y)
+int	get_addr(t_info *data, int y, int x)
 {
 	char	*dst = NULL;
 	
-	x = x % 32;
-	y = y % 32;
+	x = x % 64;
+	y = y % 64;
 	dst = data->addr1 + (y * data->size_l1 + x * (data->bpp1 / 8));
 	return (*(unsigned int *)dst);
 }
@@ -91,7 +91,11 @@ void	dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 				infos->wall_h = WIN_HEIGHT;
 			while (y < infos->wall_h)
 			{
-				color = get_addr(infos, x / 32, y / 32);
+				float a = ((y - (infos->floor1)) / (infos->wall_h - infos->floor1));
+				float b = fmod(Y / 32, 1);
+				// if (y % 2)
+				// 	printf ("i : %f\n", b);
+				color = get_addr(infos, a * 64,b * 64);
 				my_mlx_pixel_put(infos, x, y, color);
 				y++;
 			}
@@ -145,7 +149,7 @@ void	draw_rays(t_info *infos)
 	{
 		dda(pa, x, infos->x, infos->y, (infos->x + (100000 * cos(pa * PI / 180))),
 			(infos->y + (100000 * sin(pa * PI / 180))), infos);
-		pa += 0.04;
+		pa += 0.0416666667;
 	}
 	mlx_put_image_to_window(infos->mlx, infos->win, infos->img, 0, 0);
 	// mlx_put_image_to_window(infos->mlx, infos->win, infos->play, infos->x - 17, infos->y - 17);
