@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:13 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 11:06:01 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:47:11 by mmounib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ typedef struct t_info
 	int width;
 	int height;
 	char *addr;
+
 	int bpp;
 	int size_l;
 	int endian;
+	int bpp1;
+	int size_l1;
+	int endian1;
 	char **map;
 	char **map1;
 	int north;
@@ -71,6 +75,7 @@ typedef struct t_info
 	double wall_h;
 	double floor1;
 	double ceilling1;
+	char *addr1;
 } t_info;
 
 char *ft_strjoin(char const *s1, char const *s2);
@@ -106,5 +111,6 @@ void event_up(t_info **infos);
 void event_down(t_info **infos);
 void draw_rays(t_info *infos);
 void	black_window(t_info **infos);
+void init2(t_info *infos);
 
 #endif

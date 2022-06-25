@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:36 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 11:06:43 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:11:49 by mmounib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	event_right(t_info **infos, int keysym)
 	}
 	else
 		rotate_angle(infos, 5);
-	black_window(infos);
+	//black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
-	draw_map(*infos);
+	//draw_map(*infos);
 	draw_rays(*infos);
 }
 
@@ -84,9 +84,9 @@ void	event_left(t_info **infos, int keysym)
 	}
 	else
 		rotate_angle(infos, -5);
-	black_window(infos);
+	//black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
-	draw_map(*infos);
+	//draw_map(*infos);
 	draw_rays(*infos);
 }
 
@@ -105,9 +105,9 @@ void	event_up(t_info **infos)
 		return ;
 	}
 	mlx_put_image_to_window((*infos)->mlx, (*infos)->win, (*infos)->play, (*infos)->x, (*infos)->y);
-	black_window(infos);
+	//black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
-	draw_map(*infos);
+	//draw_map(*infos);
 	draw_rays(*infos);
 }
 
@@ -126,8 +126,8 @@ void	event_down(t_info **infos)
 		return ;
 	}
 	mlx_put_image_to_window((*infos)->mlx, (*infos)->win, (*infos)->play, (*infos)->x, (*infos)->y);
-	black_window(infos);
+	//black_window(infos);
 	mlx_clear_window((*infos)->mlx, (*infos)->win);
-	draw_map(*infos);
+	//draw_map(*infos);
 	draw_rays(*infos);
 }

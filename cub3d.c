@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmounib <mmounib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:06 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 11:08:54 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/25 11:13:18 by mmounib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,22 @@ int	check_line1(t_info *info)
 	return (1);
 }
 
+int	get_addr(t_info *data, int x, int y)
+{
+	char	*dst = NULL;
+	
+	x = x % 32;
+	y = y % 32;
+	dst = data->addr1 + (y * data->size_l1 + x * (data->bpp1 / 8));
+	return (*(unsigned int *)dst);
+}
+
 void	dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 {
 	int y = 0;
 	int color;
+	//int *col = NULL;
+	int flag = 0;
 	// x = 0;
 	int dx = X1 - X0;
 	int dy = Y1 - Y0;
@@ -47,7 +59,12 @@ void	dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 			if (infos->map1[(int)round(Y) / 32][(int)(round(X - Xinc) / 32)] != '1')
 			{
 				if (Xinc > 0)
-					color = 0x000000;
+				{
+					flag = 1;
+					//color = 0x000000;
+					//color = get_addr(infos, fmod(round(Y) / 32, 1), fmod(round(X) / 32, 1));
+					// exit(0);
+				}
 				else
 					color = 0x0000FF;
 			}
@@ -74,6 +91,7 @@ void	dda(double pa, int x, int X0, int Y0, int X1, int Y1, t_info *infos)
 				infos->wall_h = WIN_HEIGHT;
 			while (y < infos->wall_h)
 			{
+				color = get_addr(infos, x / 32, y / 32);
 				my_mlx_pixel_put(infos, x, y, color);
 				y++;
 			}
@@ -206,6 +224,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	rgb = (info.red << 16) | (info.green << 8) | (info.blue << 0);
 	checkmap1(&info, &i);
+	init2(&info);
 	replace_map(&info, i);
 	if (!checkmap(&info))
 		return (0);
