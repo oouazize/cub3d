@@ -6,13 +6,13 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:53 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/24 11:09:58 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:54:06 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -33,19 +33,43 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[j])
 		string[i++] = s2[j++];
 	string[i] = '\0';
+	free(s1);
 	return (string);
 }
 
-void	black_window(t_info **infos)
+int	ft_strcmp(const char *str1, const char *str2)
+{
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
+
+	i = 0;
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_isdigit1(char *s)
 {
 	int	i;
-	int	j;
 
 	i = -1;
-	while (++i < WIN_HEIGHT)
+	if (!s)
+		return (0);
+	while (s[++i])
 	{
-		j = -1;
-		while (++j < WIN_WIDTH)
-			my_mlx_pixel_put(*infos, j, i, 0x000000);
+		if (s[i] >= 48 && s[i] <= 57)
+			return (1);
 	}
+	return (0);
 }

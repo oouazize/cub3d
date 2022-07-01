@@ -6,15 +6,21 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:20:40 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/20 15:06:58 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:36:36 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int ft_wlen(char const *s, char c)
+void	ft_skipspace(t_info *infos, int *j, int i)
 {
-	int i;
+	while (infos->map->map[i][*j] == 32)
+		(*j)++;
+}
+
+int	ft_wlen(char const *s, char c)
+{
+	int	i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -22,10 +28,10 @@ static int ft_wlen(char const *s, char c)
 	return (i);
 }
 
-int counter(char const *s, char c)
+int	counter(char const *s, char c)
 {
-	int x;
-	int i;
+	int	x;
+	int	i;
 
 	x = 0;
 	while (*s)
@@ -40,12 +46,12 @@ int counter(char const *s, char c)
 	return (x);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int parts_count;
-	int count;
-	int len;
-	char **copy;
+	int		parts_count;
+	int		count;
+	int		len;
+	char	**copy;
 
 	parts_count = counter(s, c);
 	copy = (char **)malloc((parts_count + 1) * sizeof(char *));

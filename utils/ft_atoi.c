@@ -6,17 +6,17 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:19:42 by oouazize          #+#    #+#             */
-/*   Updated: 2022/06/22 13:57:59 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:41:57 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	unsigned long long value;
-	int s;
+	int					i;
+	unsigned long long	value;
+	int					s;
 
 	i = 0;
 	value = 0;
@@ -36,9 +36,9 @@ int ft_atoi(const char *str)
 	return (s * value);
 }
 
-int ft_isalpha(char *ch)
+int	ft_isalpha(char *ch)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ch[i])
@@ -50,26 +50,25 @@ int ft_isalpha(char *ch)
 	return (0);
 }
 
-int ft_isascii(char *a)
+int	ft_isascii(char *a)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (a[i])
 	{
-		if (a[i] == '-' || a[i] == '+')
-			i++;
-		if (!(a[i] >= 48 && a[i] <= 57))
+		if (!(a[i] >= 48 && a[i] <= 57) && a[i] != 32)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int ft_strchr(const char *str, int c)
+int	ft_strchr(const char *str, int c)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
@@ -81,16 +80,18 @@ int ft_strchr(const char *str, int c)
 	return (-1);
 }
 
-int ft_strcmp(const char *str1, const char *str2)
+int	ft_strchr1(const char *str, int c)
 {
-	size_t i;
-	unsigned char *s1;
-	unsigned char *s2;
+	int	i;
 
 	i = 0;
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	if (c == '\0')
+		return (1);
+	return (0);
 }
